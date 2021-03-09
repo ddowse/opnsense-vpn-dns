@@ -1,7 +1,6 @@
 # opnsense-vpn-dns
 
-**Problem:** opnsense does not honor "dhcp-option DNS" and therefore does not change the System DNS Servers to the one of your VPN Provider by default.   
-If this is wrong and you know how to do this with just the WebGUI please tell me 😄
+**Problem:** opnsense does not honor "dhcp-option DNS" and therefore does not change the System DNS Servers to the one of your VPN Provider by default. If this is wrong and you know how to do this with just the WebGUI please tell me 😄
 
 **Solution:** 
 
