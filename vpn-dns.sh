@@ -29,8 +29,8 @@
 
 
 # Add this script to your OpenVPN Client configuration like this
-# up "/root/vpn-dns.sh up"
-# down "root/vpn-dns.sh down"
+# up "/root/vpn-dns.sh add"
+# down "root/vpn-dns.sh del"
 # Adjust the path if you save the script somewhere else  
 
 case $1 in
