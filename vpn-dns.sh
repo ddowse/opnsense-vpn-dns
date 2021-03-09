@@ -34,7 +34,7 @@
 # Adjust the path if you save the script somewhere else  
 
 case $1 in
-add) unbound-control -c /var/unbound/unbound.conf forward_add +i . `clog /var/log/openvpn.log | awk -F',' '/dhcp-option DNS/,/,/ {print $12}' | awk '{print $3}' | uniq | tail -n 2 | tr -s "\n" " "` 
+add) unbound-control -c /var/unbound/unbound.conf forward_add +i . `clog /var/log/openvpn.log | egrep -Eo 'dhcp-option DNS ([1-9]{1,3}\.){3}[0-9]{1,3}' | awk '{print $3}' | tail -n 2 | tr -s "\n" " "`
 ;;
 del) unbound-control -c /var/unbound/unbound.conf forward_add +i . `tail -n 2 /etc/resolv.conf | cut -f 2 -d " " | tr -s "\n" " "` 
 ;;
