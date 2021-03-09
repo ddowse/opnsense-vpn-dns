@@ -24,7 +24,7 @@ The following name servers are used for lookup of opnsense.org.
 forwarding request:
 Delegation with 0 names, of which 0 can be examined to query further addresses.
 It provides 2 IP addresses.
-95.211.199.144          rto 60 msec, ttl 304, ping 36 var 6 rtt 60, tA 0, tAAAA 0, tother 0, EDNS 0 probed.
+37.48.94.55             rto 60 msec, ttl 304, ping 36 var 6 rtt 60, tA 0, tAAAA 0, tother 0, EDNS 0 probed.
 95.211.146.77           rto 51 msec, ttl 304, ping 35 var 4 rtt 51, tA 0, tAAAA 0, tother 0, EDNS 0 probed.
 ```
 or   
