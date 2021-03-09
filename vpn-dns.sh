@@ -40,6 +40,8 @@ del) unbound-control -c /var/unbound/unbound.conf forward_add +i . `tail -n 2 /e
 ;;
 show) unbound-control -c /var/unbound/unbound.conf lookup opnsense.org 
 ;;
-*) echo "Help: add|del|show" 
+put) unbound-control -c /var/unbound/unbound.conf forward_add +i . $@
+;;
+*) echo "Help: add|del|show|put [Nameserver]" 
 ;;
 esac
