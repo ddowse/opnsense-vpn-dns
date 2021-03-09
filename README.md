@@ -5,7 +5,7 @@ opnsense does not honor the dhcp-option field and does not change the System DNS
 VPN Provider pushes.   
 
 This script adds the DNS Server from your VPN Provider and restores the DNS Servers that are specified   
-in System -> Settings -> General -> DNS servers
+in System -> Settings -> General -> DNS servers.
 
 ## Installation
 
@@ -24,9 +24,25 @@ up "/root/vpn-dns.sh add"
 down "/root/vpn-dns.sh del"
 ```
 
+Make sure that verbosity is at least at Level 3.
+
 If you choose to save the file somewhere else then don't forget to modify the path to the script.   
 
-## Deletion/Deinstall/Disable
+## Deinstall/Disable
 
-Disable: Add # in beginning of the lines   
 Deinstall: Delete the lines and delete the file from opnsense
+Disable: Add # in beginning of the lines.  
+
+## Change /Forwarding/ DNS Server 'on-the-fly'
+
+Juat an example. 
+
+```bash
+./vpn-dns.sh put 88.198.92.222 1.1.1.1 9.9.9.9
+```
+
+This would just execute
+
+```bash
+unbound-control -c /var/unbound/unbound.conf forward_add +i . 88.198.92.222 1.1.1.1 9.9.9.9
+```
