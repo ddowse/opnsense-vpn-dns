@@ -1,11 +1,43 @@
 # opnsense-vpn-dns
-Add and Remove Pushed DNS Servers via dhcp-options
 
-opnsense does not honor the dhcp-option field and does not change the System DNS Servers that your   
-VPN Provider pushes.   
+**Problem:** opnsense does not honor "dhcp-option DNS" and therefore does not change the System DNS Servers to the one of your VPN Provider by default. If this is wrong and you know how to do this with just the WebGUI please tell me 😄
 
-This script adds the DNS Server from your VPN Provider and restores the DNS Servers that are specified   
-in System -> Settings -> General -> DNS servers.
+**Solution:** 
+
+## Basic usage
+
+Adds the IP4 address of the DNS Servers that are pushed by the OpenVPN Server (VPN Provider) to the client (opnsense).  
+
+This is part of the **PUSH** line found in /var/log/openvpn.log
+
+```
+dhcp-option DNS 95.211.146.77,dhcp-option DNS 37.48.94.55
+```
+
+The script will make the local DNS Resolver **unbound** use those servers as new forwarding servers for DNS lookups.  
+
+To see what Nameserver a currently in use run this script with **show** argument 
+
+```bash
+root@opnsense:~ # ./vpn-dns.sh show
+The following name servers are used for lookup of opnsense.org.
+forwarding request:
+Delegation with 0 names, of which 0 can be examined to query further addresses.
+It provides 2 IP addresses.
+37.48.94.55             rto 60 msec, ttl 304, ping 36 var 6 rtt 60, tA 0, tAAAA 0, tother 0, EDNS 0 probed.
+95.211.146.77           rto 51 msec, ttl 304, ping 35 var 4 rtt 51, tA 0, tAAAA 0, tother 0, EDNS 0 probed.
+```
+or   
+
+```bash
+unbound-control -c /var/unbound/unbound.conf lookup opnsense.org
+```
+
+Restores the DNS Servers that are specified in System -> Settings -> General -> DNS servers (/etc/resolv.conf) with
+
+```bash
+./vpn-dns.sh del
+```
 
 ## Installation
 
@@ -30,7 +62,7 @@ If you choose to save the file somewhere else then don't forget to modify the pa
 
 ## Deinstall/Disable
 
-Deinstall: Delete the lines and delete the file from opnsense
+Deinstall: Delete the lines and delete the file from opnsense   
 Disable: Add # in beginning of the lines.  
 
 ## Change /Forwarding/ DNS Server 'on-the-fly'
