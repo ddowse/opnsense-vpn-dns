@@ -33,7 +33,7 @@ or
 unbound-control -c /var/unbound/unbound.conf lookup opnsense.org
 ```
 
-Restores the DNS Servers that are specified in System -> Settings -> General -> DNS servers (/etc/resolv.conf) with
+Restores the DNS Servers from **/etc/resolv.conf** with   
 
 ```bash
 ./vpn-dns.sh del
