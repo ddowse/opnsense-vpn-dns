@@ -67,7 +67,7 @@ Disable: Add # in beginning of the lines.
 
 ## Change /Forwarding/ DNS Server 'on-the-fly'
 
-Juat an example. 
+Just an example. 
 
 ```bash
 ./vpn-dns.sh put 88.198.92.222 1.1.1.1 9.9.9.9
